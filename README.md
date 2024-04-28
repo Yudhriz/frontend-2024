@@ -1,2 +1,2 @@
-# Pertemuan 5
-Mempelajari Building dan Styling UI dengan React.js
+# Pertemuan 6
+Mempelajari List, Event, dan State dengan React.js

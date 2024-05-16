@@ -1,2 +1,2 @@
-# Pertemuan 6
-Mempelajari List, Event, dan State dengan React.js
+# Pertemuan 7
+Mempelajari Form & Lifting State dengan React.js

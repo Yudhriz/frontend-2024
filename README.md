@@ -1,2 +1,2 @@
-# Pertemuan 7
-Mempelajari Form & Lifting State dengan React.js
+# Pertemuan 8
+Mempelajari Routing and Layout dengan React.js

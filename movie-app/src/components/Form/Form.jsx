@@ -1,16 +1,22 @@
 import { useState } from "react";
 import styles from "./Form.module.css";
+import { nanoid } from "nanoid";
+import Alert from "../Alert/Alert";
 
 function Form(props) {
   const { movies, setMovies } = props;
 
-  // Membuat state title
-  const { title, setTitle } = useState("");
+  // Membuat state untuk title, date, type, dan poster
+  const [title, setTitle] = useState("");
+  const [date, setDate] = useState("");
+  const [poster, setPoster] = useState("");
+  const [type, setType] = useState("");
 
-  const { date, setDate } = useState("");
-
+  // Membuat state untuk error
   const [isTitleError, setIsTitleError] = useState(false);
   const [isDateError, setIsDateError] = useState(false);
+  const [isPosterError, setIsPosterError] = useState(false);
+  const [isTypeError, setIsTypeError] = useState(false);
 
   function handleTitle(event) {
     setTitle(event.target.value);
@@ -18,6 +24,14 @@ function Form(props) {
 
   function handleDate(event) {
     setDate(event.target.value);
+  }
+
+  function handlePoster(event) {
+    setPoster(event.target.value);
+  }
+
+  function handleType(event) {
+    setType(event.target.value);
   }
 
   // Handle Submit
@@ -28,19 +42,29 @@ function Form(props) {
       setIsTitleError(true);
     } else if (date === "") {
       setIsDateError(true);
+    } else if (poster === "") {
+      setIsPosterError(true);
+    } else if (type === "") {
+      setIsTypeError(true);
     } else {
       const movie = {
         id: nanoid(),
         title: title,
         year: date,
-        type: "Movie",
-        poster: "https://picsum.photos/300/400",
+        type: type,
+        poster: poster,
       };
 
       setMovies([...movies, movie]);
 
+      // Reset Form
+      setTitle("");
+      setDate("");
+      setPoster("");
+
       setIsDateError(false);
       setIsTitleError(false);
+      setIsPosterError(false);
     }
   }
 
@@ -66,7 +90,7 @@ function Form(props) {
               value={title}
               onChange={handleTitle}
             />
-            {isTitleError && <p>Title Wajib Diisi</p>}
+            {isTitleError && <Alert>Title Wajib Diisi</Alert>}
             <label className={styles.form__label} htmlFor='year'>
               Year
             </label>
@@ -76,10 +100,38 @@ function Form(props) {
               value={date}
               onChange={handleDate}
             />
-            {isDateError && <p>Date Wajib Diisi</p>}
+            {isDateError && <Alert>Date Wajib Diisi</Alert>}
+            <label className={styles.form__label} htmlFor='type'>
+              Type
+            </label>
+            <select
+              className={styles.form__input}
+              name='type'
+              id='type'
+              value={type}
+              onChange={handleType}
+            >
+              <option value='' hidden>Select Type</option>
+              <option value='action'>Action</option>
+              <option value='comedy'>Comedy</option>
+              <option value='drama'>Drama</option>
+              <option value='horror'>Horror</option>
+              <option value='thriller'>Thriller</option>
+            </select>
+            {isTypeError && <Alert>Type Wajib Diisi</Alert>}
+            <label className={styles.form__label} htmlFor='poster'>
+              Poster
+            </label>
+            <input
+              className={styles.form__input}
+              type='Text'
+              value={poster}
+              onChange={handlePoster}
+            />
+            {isPosterError && <Alert>Poster Wajib Diisi</Alert>}
             <input
               className={styles.form__button}
-              type='button'
+              type='submit'
               value='Submit'
             />
           </form>

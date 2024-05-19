@@ -11,19 +11,29 @@ function Navbar() {
         <div>
           <ul className={styles.navbar__list}>
             <li className={styles.navbar__item}>
-              <Link to='/'>Home</Link>
+              <Link className={styles.navbar__link} to='/'>
+                Home
+              </Link>
             </li>
             <li className={styles.navbar__item}>
-              <Link to='/movie/create'>Add Movie</Link>
+              <Link className={styles.navbar__link} to='/movie/create'>
+                Add Movie
+              </Link>
             </li>
             <li className={styles.navbar__item}>
-              <Link to='/movie/populer'>Populer</Link>
+              <Link className={styles.navbar__link} to='/movie/populer'>
+                Populer
+              </Link>
             </li>
             <li className={styles.navbar__item}>
-              <Link to='/movie/now'>Now Playing</Link>
+              <Link className={styles.navbar__link} to='/movie/now'>
+                Now Playing
+              </Link>
             </li>
             <li className={styles.navbar__item}>
-              <Link to='/movie/top'>Top Rated</Link>
+              <Link className={styles.navbar__link} to='/movie/top'>
+                Top Rated
+              </Link>
             </li>
           </ul>
         </div>

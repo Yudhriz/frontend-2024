@@ -6,66 +6,86 @@ import Alert from "../Alert/Alert";
 function Form(props) {
   const { movies, setMovies } = props;
 
-  // Membuat state untuk title, date, type, dan poster
-  const [title, setTitle] = useState("");
-  const [date, setDate] = useState("");
-  const [poster, setPoster] = useState("");
-  const [type, setType] = useState("");
+  // Membuat state untuk title, date, type, dan poster (sudah direfactor)
+  const [formData, setFormData] = useState({
+    title: "",
+    date: "",
+    type: "",
+    poster: "",
+  });
 
-  // Membuat state untuk error
-  const [isTitleError, setIsTitleError] = useState(false);
-  const [isDateError, setIsDateError] = useState(false);
-  const [isPosterError, setIsPosterError] = useState(false);
-  const [isTypeError, setIsTypeError] = useState(false);
+  // Membuat state untuk error (sudah direfactor)
+  const [formError, setFormError] = useState({
+    title: false,
+    date: false,
+    type: false,
+    poster: false,
+  });
 
-  function handleTitle(event) {
-    setTitle(event.target.value);
+  // Membuat function untuk menghandle perubahan value pada form (sudah direfactor)
+  function handleChange(event) {
+    // destructuring name dan value dari event.target
+    const { name, value } = event.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+    setFormError({
+      ...formError,
+      [name]: false,
+    });
   }
 
-  function handleDate(event) {
-    setDate(event.target.value);
+  // Destructuring formData dan formError
+  const { title, date, type, poster } = formData;
+  const {
+    title: isTitleError,
+    date: isDateError,
+    type: isTypeError,
+    poster: isPosterError,
+  } = formError;
+
+  // Membuat function untuk validasi form (sudah direfactor)
+  function validation() {
+    // Membuat object errors
+    const errors = {
+      title: title === "",
+      date: date === "",
+      type: type === "",
+      poster: poster === "",
+    };
+    // Set formError dengan errors
+    setFormError(errors);
+
+    // Mengembalikan nilai boolean
+    return !Object.values(errors).includes(true);
   }
 
-  function handlePoster(event) {
-    setPoster(event.target.value);
+  function addMovie() {
+    const movie = {
+      id: nanoid(),
+      title: title,
+      year: date,
+      type: type,
+      poster: poster,
+    };
+
+    setMovies([...movies, movie]);
+
+    // Reset Form
+    setFormData({
+      title: "",
+      date: "",
+      type: "",
+      poster: "",
+    });
   }
 
-  function handleType(event) {
-    setType(event.target.value);
-  }
-
-  // Handle Submit
+  // Handle Submit (sudah direfactor)
   function handleSubmit(event) {
     event.preventDefault();
 
-    if (title === "") {
-      setIsTitleError(true);
-    } else if (date === "") {
-      setIsDateError(true);
-    } else if (poster === "") {
-      setIsPosterError(true);
-    } else if (type === "") {
-      setIsTypeError(true);
-    } else {
-      const movie = {
-        id: nanoid(),
-        title: title,
-        year: date,
-        type: type,
-        poster: poster,
-      };
-
-      setMovies([...movies, movie]);
-
-      // Reset Form
-      setTitle("");
-      setDate("");
-      setPoster("");
-
-      setIsDateError(false);
-      setIsTitleError(false);
-      setIsPosterError(false);
-    }
+    validation() && addMovie();
   }
 
   return (
@@ -87,8 +107,9 @@ function Form(props) {
             <input
               className={styles.form__input}
               type='text'
+              name='title'
               value={title}
-              onChange={handleTitle}
+              onChange={handleChange}
             />
             {isTitleError && <Alert>Title Wajib Diisi</Alert>}
             <label className={styles.form__label} htmlFor='year'>
@@ -97,8 +118,9 @@ function Form(props) {
             <input
               className={styles.form__input}
               type='number'
+              name='date'
               value={date}
-              onChange={handleDate}
+              onChange={handleChange}
             />
             {isDateError && <Alert>Date Wajib Diisi</Alert>}
             <label className={styles.form__label} htmlFor='type'>
@@ -109,9 +131,11 @@ function Form(props) {
               name='type'
               id='type'
               value={type}
-              onChange={handleType}
+              onChange={handleChange}
             >
-              <option value='' hidden>Select Type</option>
+              <option value='' hidden>
+                Select Type
+              </option>
               <option value='action'>Action</option>
               <option value='comedy'>Comedy</option>
               <option value='drama'>Drama</option>
@@ -124,9 +148,10 @@ function Form(props) {
             </label>
             <input
               className={styles.form__input}
-              type='Text'
+              type='text'
+              name='poster'
               value={poster}
-              onChange={handlePoster}
+              onChange={handleChange}
             />
             {isPosterError && <Alert>Poster Wajib Diisi</Alert>}
             <input
@@ -140,4 +165,5 @@ function Form(props) {
     </div>
   );
 }
+
 export default Form;

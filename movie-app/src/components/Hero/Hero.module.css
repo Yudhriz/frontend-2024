@@ -68,10 +68,10 @@
     }
 
     .hero__left {
-        flex-basis: 50%;
+        flex-basis: 70%;
     }
 
     .hero__right {
-        flex-basis: 50%;
+        flex-basis: 30%;
     }
 }

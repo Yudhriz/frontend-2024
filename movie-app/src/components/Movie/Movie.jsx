@@ -1,19 +1,16 @@
-import styles from "./Movie.module.css";
+import Heading from "../ui/Heading/Heading";
+import Image from "../ui/Image/Image";
+import StyledMovie from "./Movie.styled";
 
 function Movie(props) {
-
   const { movie } = props;
 
   return (
-    <div className={styles.movie}>
-      <img
-        className={styles.movie__image}
-        src={movie.poster}
-        alt={movie.title}
-      />
-      <h3 className={styles.movie__title}>{movie.title}</h3>
-      <p className={styles.movie__date}>{movie.year}</p>
-    </div>
+    <StyledMovie>
+      <Image src={movie.poster} alt={movie.title} />
+      <Heading as='h3'>{movie.title}</Heading>
+      <p>{movie.year}</p>
+    </StyledMovie>
   );
 }
 

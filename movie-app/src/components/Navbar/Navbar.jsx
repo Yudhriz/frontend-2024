@@ -1,35 +1,44 @@
+import styles from "./Navbar.module.css";
 import { Link } from "react-router-dom";
-import StyledNavbar from "./Navbar.styled";
-import Heading from "../ui/Heading/Heading";
 
 function Navbar() {
   return (
-    <StyledNavbar>
-      <nav>
+    <div className={styles.container}>
+      <nav className={styles.navbar}>
         <div>
-          <Heading>Movie App</Heading>
+          <h1 className={styles.navbar__brand}>Movie App</h1>
         </div>
         <div>
-          <ul>
-            <li>
-              <Link to='/'>Home</Link>
+          <ul className={styles.navbar__list}>
+            <li className={styles.navbar__item}>
+              <Link className={styles.navbar__link} to='/'>
+                Home
+              </Link>
             </li>
-            <li>
-              <Link to='/movie/create'>Add Movie</Link>
+            <li className={styles.navbar__item}>
+              <Link className={styles.navbar__link} to='/movie/create'>
+                Add Movie
+              </Link>
             </li>
-            <li>
-              <Link to='/movie/populer'>Populer</Link>
+            <li className={styles.navbar__item}>
+              <Link className={styles.navbar__link} to='/movie/populer'>
+                Populer
+              </Link>
             </li>
-            <li>
-              <Link to='/movie/now'>Now Playing</Link>
+            <li className={styles.navbar__item}>
+              <Link className={styles.navbar__link} to='/movie/now'>
+                Now Playing
+              </Link>
             </li>
-            <li>
-              <Link to='/movie/top'>Top Rated</Link>
+            <li className={styles.navbar__item}>
+              <Link className={styles.navbar__link} to='/movie/top'>
+                Top Rated
+              </Link>
             </li>
           </ul>
         </div>
       </nav>
-    </StyledNavbar>
+    </div>
   );
 }
 

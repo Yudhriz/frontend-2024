@@ -1,4 +1,5 @@
-import styles from "./Footer.module.css";
+import Heading from "../ui/Heading/Heading";
+import StyledFooter from "./Footer.styled";
 
 function Footer() {
   return (
@@ -7,7 +8,7 @@ function Footer() {
         <Heading as='h2'>Movie App</Heading>
         <p>Created by Yudha Rizky Alvingky</p>
       </footer>
-    </div>
+    </StyledFooter>
   );
 }
 

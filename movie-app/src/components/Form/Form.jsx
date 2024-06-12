@@ -2,6 +2,8 @@ import { useState } from "react";
 import styles from "./Form.module.css";
 import { nanoid } from "nanoid";
 import Alert from "../Alert/Alert";
+import Button from "../ui/Button/Button";
+import Image from "../ui/Image/Image";
 
 function Form(props) {
   const { movies, setMovies } = props;
@@ -92,8 +94,9 @@ function Form(props) {
     <div className={styles.container}>
       <section className={styles.form}>
         <div className={styles.form__left}>
-          <img
+          <Image
             className={styles.form__image}
+            borderRadius='25px'
             src='https://picsum.photos/536/354'
             alt='placeholder'
           />
@@ -154,11 +157,9 @@ function Form(props) {
               onChange={handleChange}
             />
             {isPosterError && <Alert>Poster Wajib Diisi</Alert>}
-            <input
-              className={styles.form__button}
-              type='submit'
-              value='Submit'
-            />
+            <Button variant='primary' full type='submit'>
+              Submit
+            </Button>
           </form>
         </div>
       </section>

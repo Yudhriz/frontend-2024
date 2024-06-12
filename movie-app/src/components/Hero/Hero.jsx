@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
-import styles from "./Hero.module.css";
+import Button from "../ui/Button/Button";
+import StyledHero from "./Hero.styled";
+import Heading from "../ui/Heading/Heading";
+import Image from "../ui/Image/Image";
 
 function Hero() {
   const [movie, setMovie] = useState("");
@@ -14,28 +17,24 @@ function Hero() {
       setMovie(data);
     }
     fetchData();
-  });
+  }, []); // Added empty dependency array to run only once
 
   return (
-    <div className={styles.container}>
-      <section className={styles.hero}>
-        <div className={styles.hero__left}>
-          <h2 className={styles.hero__title}>{movie.Title}</h2>
-          <h3 className={styles.hero__genre}>
+    <StyledHero>
+      <section>
+        <div className='hero__left'>
+          <Heading as='h2'>{movie.Title}</Heading>
+          <Heading as='h3'>
             Genre: <span>{movie.Genre}</span>
-          </h3>
-          <p className={styles.hero__description}>{movie.Plot}</p>
-          <button className={styles.hero__button}>Watch</button>
+          </Heading>
+          <p>{movie.Plot}</p>
+          <Button variant='primary'>Watch</Button>
         </div>
-        <div className={styles.hero__right}>
-          <img
-            className={styles.hero__image}
-            src={movie.Poster}
-            alt='placeholder'
-          />
+        <div className='hero__right'>
+          <Image src={movie.Poster} alt='placeholder' />
         </div>
       </section>
-    </div>
+    </StyledHero>
   );
 }
 

@@ -5,6 +5,12 @@ import PopulerMovie from "./pages/movie/Populer";
 import NowPlayingMovie from "./pages/movie/NowPlaying";
 import TopRateMovie from "./pages/movie/TopRated";
 import Layout from "./Layout/Layout";
+<<<<<<< HEAD
+import { ThemeProvider } from "styled-components";
+import theme from "./utils/constants/theme.jsx";
+import GlobalStyle from "./components/GlobalStyle/GlobalStyle";
+=======
+>>>>>>> 053d31c3f2f59f7e5da3adebc783fb970b97ba64
 
 const App = () => {
   return (

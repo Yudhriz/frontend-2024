@@ -4,12 +4,12 @@ import StyledMovies from "./Movies.styled";
 
 function Movies(props) {
   // Membuat Variable Movies
-  const { movies, setMovies } = props;
+  const { movies, setMovies, title } = props;
 
   return (
     <StyledMovies>
       <section>
-        <Heading as='h2'>Latest Movie</Heading>
+        <Heading as='h2'>{title ? `${title}` : "Latest Movie"}</Heading>
         <div className='movie__container'>
           {movies.map((movie) => {
             return <Movie key={movie.id} movie={movie} />;

@@ -5,6 +5,7 @@ const StyledMovies = styled.div`
 
   section {
     margin: 5rem 0;
+    padding: 20px;
     text-align: center;
   }
 
@@ -15,24 +16,23 @@ const StyledMovies = styled.div`
   }
 
   .movie__container {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr); /* Default untuk layar kecil */
+    gap: 20px;
   }
 
   /* Medium Screen */
   @media (min-width: 768px) {
     .movie__container {
-      flex-direction: row;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: center;
+      grid-template-columns: repeat(2, 1fr); /* 2 kolom untuk layar sedang */
     }
   }
 
   /* Large Screen */
   @media (min-width: 992px) {
-    max-width: 1200px;
-    margin: 3rem auto;
+    .movie__container {
+      grid-template-columns: repeat(4, 1fr); /* 4 kolom untuk layar besar */
+    }
   }
 `;
 

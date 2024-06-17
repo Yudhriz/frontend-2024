@@ -5,11 +5,16 @@ import StyledMovie from "./Movie.styled";
 function Movie(props) {
   const { movie } = props;
 
+  const tmdbImage = `https://image.tmdb.org/t/p/w300/${movie.poster_path}}`;
+  const year = movie.release_date
+    ? new Date(movie.release_date).getFullYear()
+    : movie.year;
+
   return (
     <StyledMovie>
-      <Image src={movie.poster} alt={movie.title} />
+      <Image src={movie.poster || tmdbImage} alt={movie.title} />
       <Heading as='h3'>{movie.title}</Heading>
-      <p>{movie.year}</p>
+      <p>{year}</p>
     </StyledMovie>
   );
 }

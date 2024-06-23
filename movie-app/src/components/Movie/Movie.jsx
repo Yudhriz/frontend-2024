@@ -1,6 +1,7 @@
 import Heading from "../ui/Heading/Heading";
 import Image from "../ui/Image/Image";
 import StyledMovie from "./Movie.styled";
+import { Link } from "react-router-dom";
 
 function Movie(props) {
   const { movie } = props;
@@ -12,8 +13,10 @@ function Movie(props) {
 
   return (
     <StyledMovie>
-      <Image src={movie.poster || tmdbImage} alt={movie.title} />
-      <Heading as='h3'>{movie.title}</Heading>
+      <Link to={`/movie/${movie.id}`}>
+        <Image src={movie.poster || tmdbImage} alt={movie.title} />
+        <Heading as='h3'>{movie.title}</Heading>
+      </Link>
       <p>{year}</p>
     </StyledMovie>
   );

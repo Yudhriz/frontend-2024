@@ -4,10 +4,10 @@ import StyledHero from "./Hero.styled";
 import Heading from "../ui/Heading/Heading";
 import Image from "../ui/Image/Image";
 import axios from "axios";
+import ENDPOINT from "../../utils/constants/endpoint";
 
 function Hero() {
   const [movie, setMovie] = useState("");
-  const API_KEY = import.meta.env.VITE_API_KEY;
   const genres = movie && movie.genres.map((genre) => genre.name).join(", ");
   const idTrailer = movie && movie.videos.results[0].key;
 
@@ -15,9 +15,7 @@ function Hero() {
   useEffect(() => {
     // Fetch trending movies
     async function fetchTrendingMovies() {
-      const url = `https://api.themoviedb.org/3/trending/movie/day?api_key=${API_KEY}`;
-
-      const response = await axios(url);
+      const response = await axios(ENDPOINT.HERO);
       const firstMovie = response.data.results[0];
       return firstMovie;
     }
@@ -28,10 +26,7 @@ function Hero() {
     async function fetchDetailMovie() {
       const trendingMovie = await fetchTrendingMovies();
       const id = trendingMovie.id;
-
-      const params = `?api_key=${API_KEY}&append_to_response=videos`;
-      const url = `https://api.themoviedb.org/3/movie/${id}${params}`;
-      const response = await axios(url);
+      const response = await axios(ENDPOINT.DETAIL(id));
 
       setMovie(response.data);
     }
@@ -44,9 +39,7 @@ function Hero() {
       <section>
         <div className='hero__left'>
           <Heading as='h2'>{movie.title}</Heading>
-          <Heading as='h3'>
-            Genre: <span>{genres}</span>
-          </Heading>
+          <Heading as='h3'>{genres}</Heading>
           <p>{movie.overview}</p>
           <Button
             variant='primary'

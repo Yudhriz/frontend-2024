@@ -15,6 +15,10 @@ const StyledMovies = styled.div`
     color: #4361ee;
   }
 
+  a {
+    text-decoration: none;
+  }
+
   .movie__container {
     display: grid;
     grid-template-columns: repeat(1, 1fr); /* Default untuk layar kecil */

@@ -16,4 +16,4 @@ const ENDPOINT = {
   HERO: `${BASE_URL}/trending/movie/day?api_key=${API_KEY}`,
 };
 
-export default ENDPOINT;
+export default ENDPOINT; 

@@ -4,9 +4,11 @@ import { nanoid } from "nanoid";
 import Alert from "../Alert/Alert";
 import Button from "../ui/Button/Button";
 import Image from "../ui/Image/Image";
+import { useNavigate } from "react-router-dom";
 
 function Form(props) {
-  const { movies, setMovies } = props;
+  // Buat navigation dari useNavigate
+  const navigation = useNavigate();
 
   // Membuat state untuk title, date, type, dan poster (sudah direfactor)
   const [formData, setFormData] = useState({
@@ -81,6 +83,9 @@ function Form(props) {
       type: "",
       poster: "",
     });
+
+    // Redirect ke halaman home
+    navigation("/");
   }
 
   // Handle Submit (sudah direfactor)
